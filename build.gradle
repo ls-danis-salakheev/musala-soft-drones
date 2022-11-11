@@ -14,6 +14,7 @@ ext {
     postgresVersion = '42.5.0'
     liquibaseVersion = '2.1.1'
     swaggerVersion = '3.0.0'
+    shedLockVersion = '4.42.0'
 }
 
 configurations {
@@ -40,7 +41,8 @@ dependencies {
     implementation "org.mapstruct:mapstruct:$mapstructVersion"
     implementation "org.postgresql:postgresql:$postgresVersion"
     implementation "org.liquibase:liquibase-gradle-plugin:$liquibaseVersion"
-
+    implementation "net.javacrumbs.shedlock:shedlock-spring:$shedLockVersion"
+    implementation "net.javacrumbs.shedlock:shedlock-provider-jdbc-template:$shedLockVersion"
     implementation 'org.liquibase:liquibase-core'
 
     compileOnly 'org.projectlombok:lombok'
