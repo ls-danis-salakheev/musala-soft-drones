@@ -26,7 +26,7 @@ import javax.validation.constraints.Size;
 public class DroneInputDto {
 
     @EqualsAndHashCode.Include
-    @NotNull(message = "serialNumber must be not null")
+    @NotNull(message = "serial number must be not null")
     @NotBlank(message = "check serial number, probably it's blank")
     @Size(max = 100, message = "length of serialNumber range from 0 to 100")
     private String serialNumber;

@@ -1,6 +1,7 @@
 package com.musala.testdrones.danissalakheev.service;
 
 import com.musala.testdrones.danissalakheev.dto.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -8,7 +9,7 @@ public interface DroneService {
 
     Long register(DroneInputDto drone);
 
-    LoadedDroneDto loadWithMedications(String serialNumber, List<MedicationDto> medications);
+    void loadWithMedications(String serialNumber, MedicationDto medications, MultipartFile image);
 
     DroneBatteryDto getAvailableByBattery(String serialNumber);
 
