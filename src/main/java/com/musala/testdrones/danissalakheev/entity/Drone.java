@@ -6,6 +6,7 @@ import com.musala.testdrones.danissalakheev.enums.DroneState;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -40,7 +41,12 @@ public class Drone extends AuditableEntity<Long> {
 
     @ToString.Exclude
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "drone", orphanRemoval = true)
-    private List<Medication> medications;
+    private List<Medication> medications = new ArrayList<>();
+
+    public void addMedication(Medication medication) {
+        medications.add(medication);
+        medication.setDrone(this);
+    }
 
     @Override
     public boolean equals(Object obj) {
