@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -34,11 +33,11 @@ public class DroneDispatchController {
         return droneService.getAllAvailableForLoad();
     }
 
-    @PutMapping("/{serialNumber}")
-    public LoadedDroneDto loadDroneWithMedication(@PathVariable String serialNumber,
-                                                  @RequestParam MultipartFile image,
-                                                  @RequestBody MedicationDto medicationDto) {
-        return droneService.loadWithMedications(serialNumber, Collections.emptyList());
+    @PutMapping( "/{serialNumber}")
+    public void loadDroneWithMedication(@PathVariable String serialNumber,
+                                                  @RequestPart MultipartFile image,
+                                                  @RequestPart @Valid MedicationDto medicationDto) {
+        droneService.loadWithMedications(serialNumber, medicationDto, image);
     }
 
     @GetMapping("/{serialNumber}/loaded")
