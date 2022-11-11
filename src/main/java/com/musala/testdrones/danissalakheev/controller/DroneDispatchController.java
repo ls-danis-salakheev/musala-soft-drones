@@ -1,12 +1,10 @@
 package com.musala.testdrones.danissalakheev.controller;
 
-import com.musala.testdrones.danissalakheev.dto.DroneBatteryDto;
-import com.musala.testdrones.danissalakheev.dto.DroneInputDto;
-import com.musala.testdrones.danissalakheev.dto.DroneOutDto;
-import com.musala.testdrones.danissalakheev.dto.LoadedDroneDto;
+import com.musala.testdrones.danissalakheev.dto.*;
 import com.musala.testdrones.danissalakheev.service.DroneService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.Collections;
@@ -37,7 +35,9 @@ public class DroneDispatchController {
     }
 
     @PutMapping("/{serialNumber}")
-    public LoadedDroneDto loadDroneWithMedication(@PathVariable String serialNumber) {
+    public LoadedDroneDto loadDroneWithMedication(@PathVariable String serialNumber,
+                                                  @RequestParam MultipartFile image,
+                                                  @RequestBody MedicationDto medicationDto) {
         return droneService.loadWithMedications(serialNumber, Collections.emptyList());
     }
 

@@ -13,6 +13,6 @@ public class LoadedDroneDto {
     private String serialNumber;
     private DroneModel model;
     private DroneState state;
-    List<MedicationDto> medications;
+    private List<MedicationOutDto> medications;
 
 }

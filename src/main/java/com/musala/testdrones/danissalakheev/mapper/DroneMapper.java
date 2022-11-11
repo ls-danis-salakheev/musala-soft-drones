@@ -22,6 +22,6 @@ public abstract class DroneMapper {
     public abstract DroneOutDto mapToOutputDto(Drone drone);
 
     @Mapping(source = "medicationDtoList", target = "medications")
-    public abstract LoadedDroneDto mapToLoadedDto(Drone drone, List<MedicationDto> medicationDtoList);
+    public abstract LoadedDroneDto mapToLoadedDto(Drone drone, List<MedicationOutDto> medicationDtoList);
 
 }
