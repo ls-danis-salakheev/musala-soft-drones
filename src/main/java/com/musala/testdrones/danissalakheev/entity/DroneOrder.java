@@ -36,6 +36,7 @@ public class DroneOrder extends AuditableEntity<Long> {
 
     public DroneOrder(Drone drone, Medication medication) {
         this.drone = drone;
+        this.state = DroneOrderState.CREATED;
         this.addMedication(medication);
     }
 
