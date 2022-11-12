@@ -20,4 +20,5 @@ public interface MedicationRepository extends JpaRepository<Medication, Long> {
     @Query("select sum(m.weight) from Medication m where m.droneOrder = :droneOrder")
     int calculateTotalWeightByOrder(DroneOrder droneOrder);
 
+    List<Medication> findAllByImageIsNull();
 }
