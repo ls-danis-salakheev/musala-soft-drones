@@ -34,6 +34,11 @@ public class DroneOrder extends AuditableEntity<Long> {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "droneOrder", orphanRemoval = true)
     private List<Medication> medications = new ArrayList<>();
 
+    public DroneOrder(Drone drone, Medication medication) {
+        this.drone = drone;
+        this.addMedication(medication);
+    }
+
     public void addMedication(Medication medication) {
         medications.add(medication);
         medication.setDroneOrder(this);
