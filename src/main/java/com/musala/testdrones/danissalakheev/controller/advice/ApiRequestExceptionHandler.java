@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.SQLException;
 import java.time.ZonedDateTime;
 
 import static java.time.ZoneId.of;
@@ -71,6 +72,16 @@ public class ApiRequestExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({JsonParseException.class, JsonMappingException.class})
     public ApiExceptionResponse handleJsonParsingError(Exception exception, HttpServletRequest request) {
+        return new ApiExceptionResponse(exception.getMessage(),
+                request.getServletPath(),
+                BAD_REQUEST,
+                ZonedDateTime.now(of(defaultZoneId)));
+    }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler({SQLException.class})
+    public ApiExceptionResponse handleDbException(SQLException exception, HttpServletRequest request) {
         return new ApiExceptionResponse(exception.getMessage(),
                 request.getServletPath(),
                 BAD_REQUEST,
