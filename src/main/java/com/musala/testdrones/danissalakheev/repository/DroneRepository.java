@@ -21,7 +21,7 @@ public interface DroneRepository extends JpaRepository<Drone, Long> {
     List<Drone> findAllAvailableForLoad(int batteryCapacity, DroneState droneState);
 
     @Query("select new com.musala.testdrones.danissalakheev.repository.projection" +
-           ".DroneBatteryLevelProjection(d.serialNumber, d.batteryCapacity)" +
+           ".DroneBatteryLevelProjection(d.serialNumber, d.state, d.batteryCapacity)" +
            "from Drone d")
     List<DroneBatteryLevelProjection> findAllBatteryProjections();
 

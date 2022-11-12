@@ -1,5 +1,6 @@
 package com.musala.testdrones.danissalakheev.repository.projection;
 
+import com.musala.testdrones.danissalakheev.enums.DroneState;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 public class DroneBatteryLevelProjection {
 
     private final String serialNumber;
+    private final DroneState state;
     private final int capacity;
 
 }
