@@ -1,16 +1,17 @@
 package com.musala.testdrones.danissalakheev.service.impl;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Accessors(chain = true)
+@RequiredArgsConstructor
 public class ErrorResponse {
 
-    private Message message;
+    private final Message message;
 
     @Data
     public static class Message {

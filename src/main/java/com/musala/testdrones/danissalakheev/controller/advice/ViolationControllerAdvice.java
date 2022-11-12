@@ -11,37 +11,36 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
-import static com.musala.testdrones.danissalakheev.service.impl.ErrorResponse.*;
+import static com.musala.testdrones.danissalakheev.service.impl.ErrorResponse.Message;
+import static com.musala.testdrones.danissalakheev.service.impl.ErrorResponse.Violation;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 @ControllerAdvice
 public class ViolationControllerAdvice {
 
-    @ExceptionHandler({MethodArgumentNotValidException.class})
-    @ResponseStatus(BAD_REQUEST)
     @ResponseBody
-    ErrorResponse onMethodArgumentNotValidException(
-            MethodArgumentNotValidException e) {
+    @ResponseStatus(BAD_REQUEST)
+    @ExceptionHandler({MethodArgumentNotValidException.class})
+    public ErrorResponse onMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
         Message message = new Message();
-        for (FieldError fieldError : e.getBindingResult().getFieldErrors()) {
+        for (FieldError fieldError : exception.getBindingResult().getFieldErrors()) {
             message.getViolationList().add(new Violation()
                     .setFieldName(fieldError.getField())
                     .setMessage(fieldError.getDefaultMessage()));
         }
-        return new ErrorResponse().setMessage(message);
+        return new ErrorResponse(message);
     }
 
-    @ExceptionHandler({ConstraintViolationException.class})
-    @ResponseStatus(BAD_REQUEST)
     @ResponseBody
-    ErrorResponse onConstraintViolationException(
-            ConstraintViolationException e) {
+    @ResponseStatus(BAD_REQUEST)
+    @ExceptionHandler({ConstraintViolationException.class})
+    public ErrorResponse onConstraintViolationException(ConstraintViolationException exception) {
         Message message = new Message();
-        for (ConstraintViolation<?> constraintViolation : e.getConstraintViolations()) {
+        for (ConstraintViolation<?> constraintViolation : exception.getConstraintViolations()) {
             message.getViolationList().add(new Violation()
                     .setFieldName(constraintViolation.getPropertyPath().toString())
                     .setMessage(constraintViolation.getMessage()));
         }
-        return new ErrorResponse().setMessage(message);
+        return new ErrorResponse(message);
     }
 }
