@@ -1,6 +1,7 @@
 package com.musala.testdrones.danissalakheev.service;
 
 import com.musala.testdrones.danissalakheev.dto.*;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -13,9 +14,9 @@ public interface DroneService {
 
     DroneBatteryDto getAvailableByBattery(String serialNumber);
 
-    List<DroneInputDto> getAllAvailableForLoad();
+    List<DroneInputDto> getAllAvailableForLoad(PageRequest pageRequest);
 
-    List<DroneOutDto> getAll(int page, int size);
+    List<DroneOutDto> getAll(PageRequest pageRequest);
 
     LoadedDroneDto findLoaded(String serialNumber);
 

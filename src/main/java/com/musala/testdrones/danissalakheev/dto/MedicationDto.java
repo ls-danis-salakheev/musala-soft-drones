@@ -1,5 +1,6 @@
 package com.musala.testdrones.danissalakheev.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.validation.constraints.Min;
@@ -29,5 +30,6 @@ public class MedicationDto {
     @NotBlank(message = "check medication code, probably it's blank")
     @Pattern(regexp = "^[A-Z0-9_]+$", message = "incorrect medication code")
     private String code;
-
+    @JsonIgnore
+    private byte[] imageBytes;
 }

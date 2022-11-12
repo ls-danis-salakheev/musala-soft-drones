@@ -12,9 +12,11 @@ public abstract class MedicationMapper {
 
     public static final MedicationMapper INSTANCE = Mappers.getMapper(MedicationMapper.class);
 
+    @Mapping(target = "imageBytes", ignore = true)
     public abstract MedicationOutDto map(Medication medication);
 
     @Mapping(target = "id", ignore = true)
-    public abstract Medication map(MedicationDto medicationDto, byte[] image);
+    @Mapping(target = "image", source = "medicationDto.imageBytes")
+    public abstract Medication map(MedicationDto medicationDto);
 
 }

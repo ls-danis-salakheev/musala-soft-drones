@@ -18,7 +18,7 @@ public class MedicationServiceImpl implements MedicationService {
     @Override
     public List<MedicationOutDto> getAllByDroneSN(String droneSerialNumber) {
         return medicationRepository
-                .findAllByDrone_SerialNumber(droneSerialNumber).stream()
+                .findAllByDroneSerialNumber(droneSerialNumber).stream()
                 .map(MedicationMapper.INSTANCE::map)
                 .toList();
     }

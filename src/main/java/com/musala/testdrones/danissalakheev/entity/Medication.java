@@ -34,8 +34,9 @@ public class Medication extends AuditableEntity<Long> {
     private byte[] image;
 
     @ToString.Exclude
+    @JoinColumn(name = "order_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Drone drone;
+    private DroneOrder droneOrder;
 
     @Override
     public boolean equals(Object obj) {

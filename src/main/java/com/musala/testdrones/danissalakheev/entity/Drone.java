@@ -41,11 +41,11 @@ public class Drone extends AuditableEntity<Long> {
 
     @ToString.Exclude
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "drone", orphanRemoval = true)
-    private List<Medication> medications = new ArrayList<>();
+    private List<DroneOrder> droneOrders = new ArrayList<>();
 
-    public void addMedication(Medication medication) {
-        medications.add(medication);
-        medication.setDrone(this);
+    public void addOrder(DroneOrder droneOrder) {
+        droneOrders.add(droneOrder);
+        droneOrder.setDrone(this);
     }
 
     @Override
